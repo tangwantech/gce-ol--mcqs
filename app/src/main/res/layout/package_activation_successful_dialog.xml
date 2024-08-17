@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="@dimen/margin_24"
+        android:paddingBottom="@dimen/margin_24">
+
+        <ImageView
+            android:id="@+id/imgPaymentStatus"
+            android:layout_width="@dimen/transaction_status_icon_height"
+            android:layout_height="@dimen/transaction_status_icon_height"
+            android:contentDescription="@string/payment_status_image"
+            app:srcCompat="@drawable/ic_baseline_check_circle_outline_24" />
+
+        <TextView
+            android:id="@+id/tvPackageActivationSuccessful"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/transaction_successful"
+            android:textSize="@dimen/text_size_16" />
+
+    </LinearLayout>
+
+</FrameLayout>

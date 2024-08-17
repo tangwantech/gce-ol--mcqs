@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLoInitializingActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.GCEFirstActivity"
+    android:orientation="vertical"
+    style="@style/Theme.GCEOLMCQS.Fullscreen">
+
+    <LinearLayout
+        android:id="@+id/appNameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--        <TextView-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="@string/app_name"-->
+        <!--            android:textColor="@color/color_primary_dark"-->
+        <!--            android:textSize="44sp"-->
+        <!--            android:visibility="gone" />-->
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:baselineAligned="true"
+            android:fitsSystemWindows="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/splash_gce" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/tvInitializing"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Initializing..."
+            android:textSize="@dimen/text_size_20"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"/>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

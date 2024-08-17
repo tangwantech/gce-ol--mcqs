@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.SectionFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/timer_bar"/>
+
+        <ScrollView
+            android:id="@+id/svQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/timerLayout"
+            android:layout_above="@id/btnResultLayout">
+            <include layout="@layout/question_card_item"/>
+        </ScrollView>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/btnResultLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_minimum_height"
+            android:minHeight="@dimen/button_minimum_height"
+            android:gravity="end"
+            android:layout_alignParentBottom="true"
+            android:paddingRight="@dimen/margin_12"
+            android:paddingLeft="@dimen/margin_12">
+
+            <Button
+                android:id="@+id/btnNext"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:enabled="true"
+                android:text="@string/next_question"
+                android:textSize="@dimen/text_size_14" />
+
+            <Button
+                android:id="@+id/btnResult"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:enabled="false"
+                android:paddingLeft="@dimen/margin_24"
+                android:paddingRight="@dimen/margin_24"
+                android:text="@string/result"
+                android:textSize="@dimen/text_size_14" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</FrameLayout>

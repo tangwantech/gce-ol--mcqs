@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/margin_24"
+    android:paddingEnd="@dimen/margin_24"
+    android:paddingTop="@dimen/margin_8"
+    android:paddingBottom="@dimen/margin_8"
+    >
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="@dimen/margin_2"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="24dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:text="@string/subject"
+            android:gravity="center_vertical"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"/>
+        <TextView
+            android:id="@+id/invoiceSubjectNameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:minHeight="24dp"
+            android:text="Subject: Biology"
+            android:gravity="center_vertical|end"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_weight="0.6"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="24dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/selected_package"
+            android:layout_weight="0.4"
+            android:gravity="center_vertical"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"/>
+        <TextView
+            android:id="@+id/invoicePackageNameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:minHeight="24dp"
+            android:text="Package: MCQ 3H"
+            android:gravity="center_vertical|end"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_weight="0.6"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="24dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/amount_to_pay"
+            android:layout_weight="0.4"
+            android:gravity="center_vertical"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"/>
+        <TextView
+            android:id="@+id/invoicePackagePriceTv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:minHeight="24dp"
+            android:text="Price: 75 FCFA"
+            android:gravity="center_vertical|end"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_weight="0.6"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="24dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/momo_number"
+            android:layout_weight="0.4"
+            android:gravity="center_vertical"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"/>
+        <TextView
+            android:id="@+id/invoiceMomoNumberTv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:minHeight="24dp"
+            android:gravity="center_vertical|end"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_weight="0.6"/>
+    </LinearLayout>
+
+
+</LinearLayout>

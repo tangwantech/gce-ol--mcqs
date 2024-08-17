@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.SubjectPackageDetailsDialogFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvSubjectPackageDetailsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/recycler_item_view_min_height"
+            android:background="@color/color_secondary_dark"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/margin_16"
+            android:paddingEnd="@dimen/margin_16"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="@dimen/text_size_16"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/margin_16"
+            android:layout_marginRight="@dimen/margin_16"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/margin_32">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="@dimen/weight_expires_label"
+                    android:gravity="center_vertical"
+                    android:text="@string/package_type"
+                    android:textSize="@dimen/text_size_14"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="@dimen/divided_width_2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:layout_marginRight="@dimen/margin_8"
+                    android:layout_marginBottom="@dimen/margin_4" />
+
+                <TextView
+                    android:id="@+id/tvSubjectPackage"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="@dimen/weight_expires_value"
+                    android:gravity="center_vertical"
+                    android:text="@string/mcq_day"
+                    android:textSize="@dimen/text_size_12"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/margin_32">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="@dimen/weight_expires_label"
+                    android:gravity="center_vertical"
+                    android:text="@string/activate_on"
+                    android:textSize="@dimen/text_size_12"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="@dimen/divided_width_2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:layout_marginRight="@dimen/margin_8"
+                    android:layout_marginBottom="@dimen/margin_4" />
+
+                <TextView
+                    android:id="@+id/tvSubjectPackageActivationDate"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="@dimen/weight_expires_value"
+                    android:gravity="center_vertical"
+                    android:text="@string/activated_on_value"
+                    android:textSize="@dimen/text_size_12"
+                    android:textColor="@color/color_green"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/margin_32">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="@dimen/weight_expires_label"
+                    android:gravity="center_vertical"
+                    android:text="@string/expires_on"
+                    android:textSize="@dimen/text_size_12"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="@dimen/divided_width_2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:layout_marginRight="@dimen/margin_8"
+                    android:layout_marginBottom="@dimen/margin_4" />
+
+                <TextView
+                    android:id="@+id/tvSubjectPackageExpiryDate"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="@dimen/weight_expires_value"
+                    android:gravity="center_vertical"
+                    android:text="@string/activated_on_value"
+                    android:textColor="@color/color_red"
+                    android:textSize="@dimen/text_size_12" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>

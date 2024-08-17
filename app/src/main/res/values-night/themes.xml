@@ -1,0 +1,52 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.GCEOLMCQS" parent="Theme.MaterialComponents.DayNight">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryVariant">@color/color_primary_variant</item>
+        <item name="colorOnPrimary">@color/color_on_primary</item>
+
+
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/color_secondary</item>
+        <item name="colorSecondaryVariant">@color/color_secondary_dark</item>
+        <item name="colorOnSecondary">@color/color_on_secondary</item>
+
+        <item name="android:windowBackground">@color/dark_background</item>
+        <item name="backgroundColor">@color/dark_background</item>
+        <item name="android:textColor">@color/primary_text_default_material_dark</item>
+
+    </style>
+
+    <style name="Theme.GCEOLMCQS.Fullscreen" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:actionBarStyle">@style/Widget.Theme.GCEOLMCQS.ActionBar.Fullscreen</item>
+        <item name="android:windowActionBarOverlay">true</item>
+<!--        <item name="android:windowBackground">@color/color_primary_variant</item>-->
+    </style>
+
+    <style name="CustomTabStyle" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/color_on_primary</item>
+        <item name="android:background">@color/color_primary_variant</item>
+        <item name="tabIndicatorColor">@color/tab_color</item>
+        <item name="tabTextColor">@color/color_on_primary</item>
+        <item name="tabGravity">fill</item>
+        <item name="tabIndicatorFullWidth">true</item>
+        <item name="tabInlineLabel">true</item>
+        <item name="tabMode">fixed</item>
+        <item name="tabIndicatorHeight">4dp</item>
+    </style>
+
+    <style name="SelectableOptionCard" parent="CardView">
+        <item name="cardCornerRadius">@dimen/margin_8</item>
+        <item name="cardElevation">@dimen/card_elevation_8</item>
+        <item name="android:minHeight">@dimen/selectable_option_min_height</item>
+        <item name="android:layout_marginStart">@dimen/margin_16</item>
+        <item name="android:layout_marginEnd">@dimen/margin_16</item>
+        <item name="android:layout_marginTop">@dimen/margin_4</item>
+        <item name="android:layout_marginBottom">@dimen/margin_4</item>
+
+    </style>
+
+
+</resources>

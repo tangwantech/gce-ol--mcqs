@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="24dp"
+    android:paddingRight="@dimen/margin_16"
+    android:paddingLeft="@dimen/margin_16">
+
+    <TextView
+        android:id="@+id/tvUserAnswer"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.9"
+        android:paddingTop="@dimen/margin_16"
+        android:paddingBottom="@dimen/margin_16"
+        android:text="replace with user answer"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_size_14"
+        android:gravity="center_vertical"/>
+
+    <ImageView
+        android:id="@+id/imgRemark"
+        android:layout_width="0dp"
+        android:layout_weight="0.1"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/ic_baseline_check_24"
+        android:contentDescription="@string/wrong"/>
+
+</LinearLayout>

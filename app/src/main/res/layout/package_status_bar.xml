@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/button_minimum_height"
+    android:layout_marginLeft="@dimen/margin_12"
+    android:layout_marginRight="@dimen/margin_12">
+
+    <LinearLayout
+        android:id="@+id/layoutPackageType"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="0.2"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Package"
+            android:textSize="@dimen/text_size_12"
+            android:textStyle="bold"
+            android:gravity="center"/>
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divided_width_2"
+            android:layout_marginLeft="@dimen/margin_4"
+            android:layout_marginRight="@dimen/margin_4"/>
+        <TextView
+            android:id="@+id/tvSubjectPackageName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MCQ Month"
+            android:textSize="@dimen/text_size_12"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutActivateOn"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="0.3"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Activated on"
+            android:textSize="@dimen/text_size_12"
+            android:textStyle="bold"
+            android:gravity="center"/>
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divided_width_2"
+            android:layout_marginLeft="@dimen/margin_4"
+            android:layout_marginRight="@dimen/margin_4"/>
+        <TextView
+            android:id="@+id/tvSubjectActivateOn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="09/09/2022"
+            android:textSize="@dimen/text_size_12"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutExpiresOn"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="0.3"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Expires on"
+            android:textSize="@dimen/text_size_12"
+            android:textStyle="bold"
+            android:gravity="center"/>
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divided_width_2"
+            android:layout_marginLeft="@dimen/margin_4"
+            android:layout_marginRight="@dimen/margin_4"/>
+        <TextView
+            android:id="@+id/tvSubjectExpiresOn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="09/09/2022"
+            android:textSize="@dimen/text_size_12"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+</LinearLayout>

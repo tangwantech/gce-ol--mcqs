@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/margin_24"
+    android:paddingEnd="@dimen/margin_24"
+    android:paddingTop="@dimen/margin_8"
+    android:paddingBottom="@dimen/margin_8">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/terms_agreement"
+        style="@style/TextAppearance.MaterialComponents.Subtitle1"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="32dp"
+        android:orientation="horizontal"
+        android:gravity="right">
+        <TextView
+            android:id="@+id/btnTerms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_primary"
+            android:text="@string/terms_of_service"
+            android:textAllCaps="true"
+            android:padding="@dimen/margin_4"
+            android:layout_marginEnd="@dimen/margin_4"
+            android:textSize="@dimen/text_size_12"
+            android:background="@drawable/round_corners"/>
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text=" , "/>-->
+
+        <TextView
+            android:id="@+id/btnPrivacyPolicy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/privacy_policy"
+            android:textColor="@color/color_primary"
+            android:layout_marginStart="@dimen/margin_4"
+            android:padding="@dimen/margin_4"
+            android:textAllCaps="true"
+            android:textSize="@dimen/text_size_12"
+            android:background="@drawable/round_corners"/>
+    </LinearLayout>
+
+</LinearLayout>

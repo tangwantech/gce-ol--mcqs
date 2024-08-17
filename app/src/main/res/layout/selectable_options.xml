@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/margin_8"
+    android:paddingBottom="@dimen/margin_8">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardSelectableOption1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/SelectableOptionCard">
+        <LinearLayout
+            android:id="@+id/layoutOption1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:foreground="?android:selectableItemBackground"
+            android:background="@drawable/default_background">
+
+            <TextView
+                android:id="@+id/tvSelectableOption1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="@dimen/selectable_option_min_height"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/margin_4"
+                android:paddingBottom="@dimen/margin_4"
+                android:paddingLeft="@dimen/margin_16"
+                android:paddingRight="@dimen/margin_16"
+                android:text="Replace this text with non selectable option"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardSelectableOption2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/SelectableOptionCard">
+        <LinearLayout
+            android:id="@+id/layoutOption2"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="?android:selectableItemBackground"
+            android:background="@drawable/default_background">
+            <TextView
+                android:id="@+id/tvSelectableOption2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="@dimen/selectable_option_min_height"
+                android:text="Replace this text with non selectable option"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/margin_4"
+                android:paddingBottom="@dimen/margin_4"
+                android:paddingLeft="@dimen/margin_16"
+                android:paddingRight="@dimen/margin_16"
+                />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardSelectableOption3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/SelectableOptionCard">
+        <LinearLayout
+            android:id="@+id/layoutOption3"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="?android:selectableItemBackground"
+            android:background="@drawable/default_background">
+
+            <TextView
+                android:id="@+id/tvSelectableOption3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="@dimen/selectable_option_min_height"
+                android:text="Replace this text with non selectable option"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/margin_4"
+                android:paddingBottom="@dimen/margin_4"
+                android:paddingLeft="@dimen/margin_16"
+                android:paddingRight="@dimen/margin_16"
+                />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardSelectableOption4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/SelectableOptionCard">
+        <LinearLayout
+            android:id="@+id/layoutOption4"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="?android:selectableItemBackground"
+            android:background="@drawable/default_background">
+
+            <TextView
+                android:id="@+id/tvSelectableOption4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="@dimen/selectable_option_min_height"
+                android:text="Replace this text with non selectable option"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/margin_4"
+                android:paddingBottom="@dimen/margin_4"
+                android:paddingLeft="@dimen/margin_16"
+                android:paddingRight="@dimen/margin_16"
+                />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

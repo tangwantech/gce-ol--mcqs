@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/margin_14"
+    android:paddingRight="@dimen/margin_14">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_4"
+        android:layout_marginBottom="@dimen/margin_4">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="1."
+            android:layout_marginEnd="@dimen/margin_8"/>
+        <TextView
+            android:id="@+id/tvNonSelectableOption1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Replace this text with non selectable option"
+            android:textSize="@dimen/text_size_14"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_4"
+        android:layout_marginBottom="@dimen/margin_4">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="2."
+            android:layout_marginEnd="@dimen/margin_8"
+            android:textSize="@dimen/text_size_14"/>
+        <TextView
+            android:id="@+id/tvNonSelectableOption2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Replace this text with non selectable option"
+            android:textSize="@dimen/text_size_14"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_4"
+        android:layout_marginBottom="@dimen/margin_4">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="3."
+            android:layout_marginEnd="@dimen/margin_8"
+            android:textSize="@dimen/text_size_14"/>
+        <TextView
+            android:id="@+id/tvNonSelectableOption3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Replace this text with non selectable option"
+            android:textSize="@dimen/text_size_14"/>
+
+    </LinearLayout>
+
+</LinearLayout>

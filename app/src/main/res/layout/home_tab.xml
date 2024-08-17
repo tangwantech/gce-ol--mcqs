@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/homeTab"
+        style="@style/CustomTabStyle"
+        />
+<!--    app:tabTextAppearance="@style/CustomTabStyle"-->
+<!--    android:background="@color/color_primary"-->
+<!--    app:tabIndicatorColor="@color/color_secondary"-->
+<!--    app:tabTextColor="@color/color_on_primary"-->
+<!--    app:tabGravity="fill"-->
+<!--    app:tabIndicatorFullWidth="true"-->
+<!--    app:tabInlineLabel="true"-->
+<!--    app:tabMode="fixed"-->
+<!--    app:tabSelectedTextColor="@color/color_secondary"-->
+<!--    app:tabIndicatorGravity="center"-->
+<!--    app:tabIndicatorHeight="40dp"-->
+<!--    app:tabIndicator="@drawable/tab_indicator"-->
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/homeViewPager"
+        android:layout_below="@id/homeTab"/>
+
+</RelativeLayout>

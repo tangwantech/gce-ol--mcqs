@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.CorrectionFragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+       <FrameLayout
+           android:id="@+id/holderRvFragmentCorrection"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_alignParentTop="true"
+           android:layout_above="@id/layoutBtnRetryCorrection"/>
+
+        <LinearLayout
+            android:id="@+id/layoutBtnRetryCorrection"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_minimum_height"
+            android:layout_alignParentBottom="true"
+            android:paddingLeft="@dimen/margin_12"
+            android:paddingRight="@dimen/margin_12">
+
+            <Button
+                android:id="@+id/btnRetryCorrection"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:text="Retry"
+                android:textSize="@dimen/text_size_14"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btnNextSection"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:enabled="false"
+                android:text="@string/next_section"
+                android:textSize="@dimen/text_size_14" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</FrameLayout>

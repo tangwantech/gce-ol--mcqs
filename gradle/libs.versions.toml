@@ -1,0 +1,53 @@
+[versions]
+agp = "8.3.1"
+kotlin = "1.9.0"
+coreKtx = "1.12.0"
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+appcompat = "1.6.1"
+material = "1.11.0"
+kotlin-kapt = "2.0.0-RC1"
+
+coroutine = "1.7.1"
+liveData = "2.7.0"
+rxjava = "3.0.0"
+viewModel = "2.7.0"
+gson = "2.10.1"
+okhttp3 = "4.10.0"
+parse = "1.26.0"
+volley = "1.2.1"
+
+#room = "2.6.1"
+#fuel = "3.1.0"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+coroutine = {group ="org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutine" }
+liveData = {group ="androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "liveData" }
+rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
+viewModel = {group ="androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "viewModel" }
+gson = {group ="com.google.code.gson", name = "gson", version.ref = "gson" }
+okhttp3 = {group ="com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp3" }
+parse = {group ="com.github.parse-community.Parse-SDK-Android", name = "parse", version.ref = "parse" }
+volley = {group ="com.android.volley", name = "volley", version.ref = "volley" }
+
+#roomKtx = {group ="androidx.room", name = "room-ktx", version.ref = "room" }
+#roomRuntime = {group ="androidx.room", name = "room-runtime", version.ref = "room" }
+#kapt = {group ="androidx.room", name = "room-compiler", version.ref = "room" }
+
+#fuel = {group ="com.github.kittinunf.fuel", name = "fuel", version.ref = "fuel" }
+#fuelPackage = {group ="com.github.kittinunf.fuel", name = "<package>", version.ref = "fuel" }
+
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+library = { id  = "com.android.library", version.ref =  "agp" }
+kotlinKapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin-kapt" }
