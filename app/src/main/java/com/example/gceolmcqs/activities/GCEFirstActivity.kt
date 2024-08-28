@@ -29,7 +29,7 @@ class GCEFirstActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        supportActionBar?.hide()
+//        supportActionBar?.hide()
         pref = getSharedPreferences(resources.getString(R.string.app_name), MODE_PRIVATE)
 
 //        this.overridePendingTransition(R.anim.fade_in, R.anim.fade_out)

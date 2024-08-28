@@ -36,7 +36,8 @@
             android:name=".activities.GCEFirstActivity"
             android:exported="true"
             android:resizeableActivity="false"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.GCEOLMCQ.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

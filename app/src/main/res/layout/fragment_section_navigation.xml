@@ -15,6 +15,7 @@
             android:layout_above="@id/restartPaperBtn">
 
             <include layout="@layout/paper_score_bar"/>
+
             <include layout="@layout/paper_remark"
                 android:id="@+id/paperGradeLayout"
                 android:visibility="gone"/>
@@ -37,7 +38,5 @@
             android:enabled="false"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
     </RelativeLayout>
-
-
 
 </FrameLayout>

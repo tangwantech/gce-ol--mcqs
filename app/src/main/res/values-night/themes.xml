@@ -18,10 +18,9 @@
 
     </style>
 
-    <style name="Theme.GCEOLMCQS.Fullscreen" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:actionBarStyle">@style/Widget.Theme.GCEOLMCQS.ActionBar.Fullscreen</item>
-        <item name="android:windowActionBarOverlay">true</item>
-<!--        <item name="android:windowBackground">@color/color_primary_variant</item>-->
+    <style name="Theme.GCEOLMCQ.Fullscreen" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryVariant">@color/color_primary_variant</item>
     </style>
 
     <style name="CustomTabStyle" parent="TextAppearance.Design.Tab">

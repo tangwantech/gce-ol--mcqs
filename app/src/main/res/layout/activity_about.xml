@@ -5,35 +5,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.AboutActivity"
-    android:orientation="vertical"
-    android:paddingTop="@dimen/margin_8">
-    <TextView
+    android:orientation="vertical">
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="24dp"
-        android:gravity="center"
-        android:text="@string/app_name"
-        android:textSize="@dimen/text_size_18"
-        android:textColor="?attr/colorOnSurface"/>
+        android:layout_margin="8dp"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="4dp"
+        app:contentPadding="8dp">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="24dp"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textSize="@dimen/text_size_18"
+                android:textColor="?attr/colorOnSurface"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="24dp"
-        android:text="Version 1.0"
-        android:gravity="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="24dp"
+                android:text="Version 1.0"
+                android:gravity="center"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="24dp"
-        android:text="@string/developer"
-        android:gravity="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="24dp"
+                android:text="@string/developer"
+                android:gravity="center"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="24dp"
-        android:text="@string/email"
-        android:gravity="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="24dp"
+                android:text="@string/email"
+                android:gravity="center"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.cardview.widget.CardView>
+
+
 </LinearLayout>
