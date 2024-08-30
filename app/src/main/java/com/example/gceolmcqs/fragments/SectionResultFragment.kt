@@ -129,9 +129,9 @@ class SectionResultFragment : Fragment() {
         tvSectionScore.text =
             "${sectionResultFragmentViewModel.getNumberOfCorrectAnswers()}/${sectionResultFragmentViewModel.getNumberOfQuestions()}"
 
-        val tvSectionPercentage: TextView = view.findViewById(R.id.tvSectionPercentage)
-        tvSectionPercentage.text =
-            sectionResultFragmentViewModel.getScorePercentage().toString()
+//        val tvSectionPercentage: TextView = view.findViewById(R.id.tvSectionPercentage)
+//        tvSectionPercentage.text =
+//            sectionResultFragmentViewModel.getScorePercentage().toString()
 
         btnRetry = view.findViewById(R.id.btnRetry)
         btnNextSection = view.findViewById(R.id.btnNextSection)

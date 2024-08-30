@@ -2,6 +2,10 @@ package com.example.gceolmcqs
 
 class MCQConstants{
     companion object{
+        const val A = "A"
+        const val B = "B"
+        const val C = "C"
+        const val D = "D"
         const val PACKAGE_DURATION = "packageDuration"
         const val TRANSACTION_STATUS = "transactionStatus"
         const val IS_ACTIVE = "isActive"

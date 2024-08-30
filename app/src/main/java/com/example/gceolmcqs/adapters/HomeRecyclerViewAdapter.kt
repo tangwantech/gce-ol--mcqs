@@ -87,13 +87,13 @@ class HomeRecyclerViewAdapter(
             val subjectName = subjectPackageDataList[position].subjectName
             when (subjectName){
                 MCQConstants.BIOLOGY -> {
-                    holder.tvSubjectName.setCompoundDrawablesRelativeWithIntrinsicBounds(context.getDrawable(R.drawable.biology_icon), null, null, null)
+//                    holder.tvSubjectName.setCompoundDrawablesRelativeWithIntrinsicBounds(context.getDrawable(R.drawable.biology_icon), null, null, null)
                     holder.titleLo.background = context.resources.getDrawable(R.drawable.drawable_background_biology)
                     holder.tvSubjectName.setTextColor(context.resources.getColor(R.color.white))
 
                 }
                 MCQConstants.HUMAN_BIOLOGY -> {
-                    holder.tvSubjectName.setCompoundDrawablesRelativeWithIntrinsicBounds(context.getDrawable(R.drawable.human_biology_icon1), null, null, null)
+//                    holder.tvSubjectName.setCompoundDrawablesRelativeWithIntrinsicBounds(context.getDrawable(R.drawable.human_biology_icon1), null, null, null)
                     holder.titleLo.background = context.resources.getDrawable(R.drawable.drawable_background_human_biology)
                     holder.tvSubjectName.setTextColor(context.resources.getColor(R.color.white))
 

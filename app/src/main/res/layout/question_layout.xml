@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -11,7 +12,7 @@
         android:id="@+id/tvQuestion"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Replace this text with actual question"
+        android:text="@string/question_value"
         android:textSize="@dimen/text_size_16"
         android:textStyle="bold"
         android:gravity="center_vertical"/>

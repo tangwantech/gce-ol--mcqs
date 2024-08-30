@@ -14,6 +14,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gceolmcqs.R
 import com.example.gceolmcqs.ResourceImages
+import com.example.gceolmcqs.databinding.QuestionCardItemBinding
 import com.example.gceolmcqs.datamodels.QuestionWithUserAnswerMarkedData
 
 
@@ -22,8 +23,10 @@ class SectionRecyclerAdapter(
     private val title: String,
     private val questions: List<QuestionWithUserAnswerMarkedData>,
 ) : RecyclerView.Adapter<SectionRecyclerAdapter.ViewHolder>() {
+    private lateinit var binding: QuestionCardItemBinding
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
 
 
         val questionCard: CardView = view.findViewById(R.id.questionCard)
@@ -53,6 +56,8 @@ class SectionRecyclerAdapter(
 //        private val layoutOption2: LinearLayout = view.findViewById(R.id.layoutOption2)
 //        private val layoutOption3: LinearLayout = view.findViewById(R.id.layoutOption3)
 //        private val layoutOption4: LinearLayout = view.findViewById(R.id.layoutOption4)
+
+
         val selectableOptionsLayout: LinearLayout = view.findViewById(R.id.selectableOptionsLayout)
 
         val tvUserAnswer: TextView = view.findViewById(R.id.tvUserAnswer)
@@ -84,7 +89,9 @@ class SectionRecyclerAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
         val view = LayoutInflater.from(context).inflate(R.layout.question_card_item, parent, false)
+        binding = QuestionCardItemBinding.bind(view)
         return ViewHolder(view)
     }
 
@@ -95,7 +102,9 @@ class SectionRecyclerAdapter(
         val questionData = questions[position]
         displayOrHideLayout(questionData, holder, position)
 
-        if (title == context.resources.getString(R.string.result)){
+        if(title == context.getString(R.string.section_questions)){
+            setupSectionQuestions(holder)
+        }else if (title == context.resources.getString(R.string.result)){
             setupResult(questionData, holder)
 
         }else{
@@ -109,6 +118,13 @@ class SectionRecyclerAdapter(
 
     override fun getItemCount(): Int {
         return questions.size
+    }
+
+    private fun setupSectionQuestions(holder: ViewHolder){
+        holder.layoutUserAnswer.visibility = View.GONE
+        holder.layoutCorrectAnswer.visibility = View.GONE
+        holder.layoutExplanationBtn.visibility = View.GONE
+        holder.selectableOptionsLayout.visibility = View.VISIBLE
     }
 
     private fun setupResult(questionData: QuestionWithUserAnswerMarkedData, holder: ViewHolder){
@@ -162,7 +178,7 @@ class SectionRecyclerAdapter(
         }
 
         holder.explanationBtn.setOnClickListener {
-            if (context is ExplanationClickListener && questionData.explanation != null){
+            if (context is OnExplanationClickListener && questionData.explanation != null){
                 context.onExplanationClicked(questionData)
             }
         }
@@ -213,8 +229,11 @@ class SectionRecyclerAdapter(
 
     }
 
-    interface ExplanationClickListener{
+
+    interface OnExplanationClickListener{
         fun onExplanationClicked(questionData: QuestionWithUserAnswerMarkedData)
     }
+
+
 
 }

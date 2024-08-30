@@ -1,20 +1,20 @@
 package com.example.gceolmcqs.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.example.gceolmcqs.datamodels.ExamItemDataModel
-import com.example.gceolmcqs.datamodels.ExamTypeDataModel
+import com.example.gceolmcqs.datamodels.ExamItemData
+import com.example.gceolmcqs.datamodels.ExamTypeData
 
 class ExamTypeFragmentViewModel: ViewModel() {
-    private lateinit var examTypeDataModel: ExamTypeDataModel
+    private lateinit var examTypeData: ExamTypeData
 
-    fun setExamTypeData(examTypeDataModel: ExamTypeDataModel){
-        this.examTypeDataModel = examTypeDataModel
+    fun setExamTypeData(examTypeData: ExamTypeData){
+        this.examTypeData = examTypeData
     }
 
-    fun getExamTypeItemsData(): ArrayList<ExamItemDataModel>{
-        return examTypeDataModel.examItems
+    fun getExamTypeItemsData(): ArrayList<ExamItemData>{
+        return examTypeData.examItems
     }
-    fun getExamItemDataAt(position: Int):ExamItemDataModel{
-        return examTypeDataModel.examItems[position]
+    fun getExamItemDataAt(position: Int):ExamItemData{
+        return examTypeData.examItems[position]
     }
 }

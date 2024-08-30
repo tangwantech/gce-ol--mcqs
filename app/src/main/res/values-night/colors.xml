@@ -3,8 +3,9 @@
     <color name="white">#FFFFFFFF</color>
 
 <!--    <color name="color_primary">#141414</color>-->
-    <color name="color_primary">#1E7DA8</color>
+    <color name="color_primary">#141414</color>
     <color name="color_primary_variant">#141414</color>
+
     <color name="color_primary_light">#BE292929</color>
     <color name="color_on_primary">@color/white</color>
     <color name="color_primary_text_default">@color/primary_text_default_material_light</color>
@@ -16,6 +17,7 @@
     <color name="background2">#39414040</color>
 
     <!--    <color name="color_secondary">#FFF3C885</color>-->
+
     <color name="color_secondary">#FFEB3B</color>
     <color name="color_secondary_dark">#DFCE36</color>
     <color name="color_on_secondary">#FF000000</color>

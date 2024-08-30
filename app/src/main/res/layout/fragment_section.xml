@@ -9,16 +9,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/timer_bar"/>
+        <include
+            android:id="@+id/timerLayout"
+            layout="@layout/timer_bar"/>
 
-        <ScrollView
-            android:id="@+id/svQuestion"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/timerLayout"
             android:layout_above="@id/btnResultLayout">
-            <include layout="@layout/question_card_item"/>
-        </ScrollView>
+
+        </androidx.recyclerview.widget.RecyclerView>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -26,20 +28,9 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_minimum_height"
             android:minHeight="@dimen/button_minimum_height"
-            android:gravity="end"
             android:layout_alignParentBottom="true"
             android:paddingRight="@dimen/margin_12"
             android:paddingLeft="@dimen/margin_12">
-
-            <Button
-                android:id="@+id/btnNext"
-                style="?attr/borderlessButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.6"
-                android:enabled="true"
-                android:text="@string/next_question"
-                android:textSize="@dimen/text_size_14" />
 
             <Button
                 android:id="@+id/btnResult"

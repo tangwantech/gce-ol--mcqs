@@ -16,7 +16,7 @@ import com.example.gceolmcqs.activities.PaperActivity
 import com.example.gceolmcqs.R
 //import com.example.gceolmcq.activities.OnPackageExpiredListener
 import com.example.gceolmcqs.adapters.ExamTypeRecyclerViewAdapter
-import com.example.gceolmcqs.datamodels.ExamTypeDataModel
+import com.example.gceolmcqs.datamodels.ExamTypeData
 import com.example.gceolmcqs.viewmodels.ExamTypeFragmentViewModel
 
 
@@ -61,8 +61,8 @@ class ExamTypeFragment : Fragment(), ExamTypeRecyclerViewAdapter.OnRecyclerItemC
 
     private fun initVieModel(){
         examTypeFragmentViewModel = ViewModelProvider(this)[ExamTypeFragmentViewModel::class.java]
-        val examTypeDataModel = requireArguments().getSerializable("examTypeData") as ExamTypeDataModel
-        examTypeFragmentViewModel.setExamTypeData(examTypeDataModel)
+        val examTypeData = requireArguments().getSerializable("examTypeData") as ExamTypeData
+        examTypeFragmentViewModel.setExamTypeData(examTypeData)
     }
 
     private fun setupRecyclerView(){
@@ -87,11 +87,11 @@ class ExamTypeFragment : Fragment(), ExamTypeRecyclerViewAdapter.OnRecyclerItemC
 
 
     companion object {
-        fun newInstance(examTypeDataModel: ExamTypeDataModel, subjectName: String, expiresOn: String, packageName: String, subjectIndex:Int): Fragment {
+        fun newInstance(examTypeData: ExamTypeData, subjectName: String, expiresOn: String, packageName: String, subjectIndex:Int): Fragment {
             val examFragment = ExamTypeFragment()
             val bundle = Bundle()
             bundle.putString("expiresOn", expiresOn)
-            bundle.putSerializable("examTypeData", examTypeDataModel)
+            bundle.putSerializable("examTypeData", examTypeData)
             bundle.putString("subjectName", subjectName)
             bundle.putString("packageName", packageName)
             bundle.putInt(MCQConstants.SUBJECT_INDEX, subjectIndex)

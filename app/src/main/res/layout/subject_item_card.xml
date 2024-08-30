@@ -14,8 +14,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:foreground="?android:selectableItemBackground"
-        android:background="@color/background">
+        android:foreground="?android:selectableItemBackground">
         <LinearLayout
             android:id="@+id/titleLo"
             android:orientation="horizontal"
@@ -42,8 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingStart="@dimen/margin_14"
-            android:paddingEnd="@dimen/margin_14"
-            android:background="@color/background">
+            android:paddingEnd="@dimen/margin_14">
 
             <LinearLayout
                 android:id="@+id/contentLo"
@@ -179,8 +177,7 @@
             android:minHeight="52dp"
             android:gravity="end"
             android:paddingStart="@dimen/margin_14"
-            android:paddingEnd="@dimen/margin_14"
-            android:background="@color/background">
+            android:paddingEnd="@dimen/margin_14">
             <Button
                 android:id="@+id/btnSubscribe"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"

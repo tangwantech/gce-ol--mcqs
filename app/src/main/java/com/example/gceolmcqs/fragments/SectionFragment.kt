@@ -2,84 +2,35 @@ package com.example.gceolmcqs.fragments
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Button
 import android.widget.CheckBox
-import android.widget.LinearLayout
-import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gceolmcqs.activities.OnRequestToGoToResultListener
 import com.example.gceolmcqs.R
-import com.example.gceolmcqs.ResourceImages
-import com.example.gceolmcqs.datamodels.SectionDataModel
+import com.example.gceolmcqs.adapters.SectionQuestionsRecyclerAdapter
+import com.example.gceolmcqs.databinding.FragmentSectionBinding
+import com.example.gceolmcqs.datamodels.SectionData
 import com.example.gceolmcqs.viewmodels.SectionFragmentViewModel
 
 private const val SECTION_DATA = "Section data"
 private const val SECTION_INDEX = "Section index"
-class SectionFragment : Fragment(), OnClickListener {
+class SectionFragment : Fragment(), SectionQuestionsRecyclerAdapter.OnAlternativeItemRadioButtonCheckStateChangeListener{
     private lateinit var onRequestToGoToResultListener: OnRequestToGoToResultListener
 
     private lateinit var viewModel: SectionFragmentViewModel
 
-    private lateinit var svQuestion: ScrollView
+    private lateinit var binding: FragmentSectionBinding
 
-    private lateinit var tvTimer: TextView
-    private lateinit var tvCurrentQuestionNumberOfTotal: TextView
-
-    private lateinit var btnNextQuestion: Button
-    private lateinit var btnResult: Button
-
-    private lateinit var imageLo: CardView
-    private lateinit var twoStatementLo: LinearLayout
-    private lateinit var nonSelectableOptionsLo: LinearLayout
-
-    private lateinit var tvQuestion: TextView
-    private lateinit var questionLayout: LinearLayout
-
-    private lateinit var imageView: AppCompatImageView
-
-    private lateinit var tvFirstStatement: TextView
-    private lateinit var tvSecondStatement: TextView
-    private val twoStatements: ArrayList<TextView> = ArrayList()
-
-    private lateinit var tvNonSelectableOption1: TextView
-    private lateinit var tvNonSelectableOption2: TextView
-    private lateinit var tvNonSelectableOption3: TextView
-    private val nonSelectableOptions: ArrayList<TextView> = ArrayList()
-
-
-    private lateinit var tvSelectableOption1: TextView
-    private lateinit var tvSelectableOption2: TextView
-    private lateinit var tvSelectableOption3: TextView
-    private lateinit var tvSelectableOption4: TextView
-    private val selectableOptions: ArrayList<TextView> = ArrayList()
-
-
-    private lateinit var layoutOption1: LinearLayout
-    private lateinit var layoutOption2: LinearLayout
-    private lateinit var layoutOption3: LinearLayout
-    private lateinit var layoutOption4: LinearLayout
-    private val optionsLayouts: ArrayList<LinearLayout> = ArrayList()
-
-    private lateinit var cardSelectableOption1: CardView
-    private lateinit var cardSelectableOption2: CardView
-    private lateinit var cardSelectableOption3: CardView
-    private lateinit var cardSelectableOption4: CardView
-    private val cardSelectableLayouts: ArrayList<CardView> = ArrayList()
 
     private var fadeInOut: Animation? = null
     private var fadeTransition: Animation? = null
@@ -87,11 +38,6 @@ class SectionFragment : Fragment(), OnClickListener {
 
     private var isPositiveBtnClicked = false
 
-//    private var preLayoutOption: LinearLayout? = null
-//    private var currentLayoutOption: LinearLayout? = null
-//
-    private var background: Drawable? = null
-    private var textColor: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -111,23 +57,19 @@ class SectionFragment : Fragment(), OnClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_section, container, false)
+        binding = FragmentSectionBinding.inflate(inflater, container, false)
+        return binding.root
+//        return inflater.inflate(R.layout.fragment_section, container, false)
     }
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViews(view)
-
-//        startTimer()
-        btnNextQuestion.setOnClickListener(this)
-        btnResult.setOnClickListener(this)
+        setupViewListeners()
         setupViewObservers()
-        displayDirectionsDialog()
-
-
+//        displayDirectionsDialog()
     }
 
     private fun displayDirections(){
@@ -181,207 +123,78 @@ class SectionFragment : Fragment(), OnClickListener {
     }
 
 
-    @SuppressLint("SetTextI18n")
-    private fun setupViewObservers(){
-        viewModel.getTimeRemaining().observe(viewLifecycleOwner){
-            tvTimer.text =
-                "${it.minute.toString().padStart(2, '0')}:${it.second.toString().padStart(2, '0')}"
 
+    private fun setupSectionRecyclerView(){
+
+        val layoutMan = LinearLayoutManager(requireContext()).apply {
+            orientation = LinearLayoutManager.VERTICAL
         }
 
-        viewModel.getIsTimeAlmostOut().observe(viewLifecycleOwner){
-            if(it){
-//                tvTimer.setTextColor(requireContext().resources.getColor(R.color.color_accent))
-                tvTimer.startAnimation(fadeInOut)
+        binding.recyclerView.layoutManager = layoutMan
+
+        val sectionQuestionsAdapter = SectionQuestionsRecyclerAdapter(requireContext(), viewModel.getSectionTitle(), viewModel.getSectionQuestions(), this)
+        binding.recyclerView.adapter = sectionQuestionsAdapter
+    }
+
+    @SuppressLint("SetTextI18n") // Suppress lint warning for hardcoded text concatenation
+    private fun setupViewObservers() {// Set up observers for LiveData objects from the ViewModel
+
+        // Observe the remaining time and update the timer TextView
+        viewModel.getTimeRemaining().observe(viewLifecycleOwner) {
+            binding.timerLayout.tvTimer.text = requireContext().getString(
+                R.string.time_left_value,
+                it.minute.toString().padStart(2, '0'),
+                it.second.toString().padStart(2, '0')
+            )
+        }
+
+        // Observe the "time almost out" flag and start animation if true
+        viewModel.getIsTimeAlmostOut().observe(viewLifecycleOwner) {
+            if (it) {
+                binding.timerLayout.tvTimer.startAnimation(fadeInOut)
             }
-
         }
 
-        viewModel.getIsTimeOut().observe(viewLifecycleOwner){
-            if(it){
-                val alertDialog = AlertDialog.Builder(requireContext())
-                alertDialog.apply {
-                    setMessage("Timeout")
-                    setPositiveButton("Ok") { _,_ ->
-                        onRequestToGoToResultListener.onRequestToGoToResult(viewModel.getSectionResultData())
-                    }
-                    setCancelable(false)
-                }.create().show()
-                disableSelectableOptions()
-                btnResult.isEnabled = true
-                btnNextQuestion.isEnabled = false
-            }
-
+        // Observe the "timeout" flag and show alert dialog if true
+        viewModel.getIsTimeOut().observe(viewLifecycleOwner) {if (it) {
+            val alertDialog = AlertDialog.Builder(requireContext())
+            alertDialog.apply {
+                setMessage("Timeout")
+                setPositiveButton("Ok") { _, _ ->
+                    // Trigger callback to navigate to result screen
+                    onRequestToGoToResultListener.onRequestToGoToResult(viewModel.getSectionResultData())
+                }
+                setCancelable(false)
+            }.create().show()
+            binding.btnResult.isEnabled = true // Enable "Result" button
+        }
         }
 
-
-        viewModel.getQuestionIndex()
-            .observe(viewLifecycleOwner, Observer { questionIndex ->
-//                svQuestion.startAnimation(fadeInOut)
-
-                setAnimationOnQuestionViewItems()
-                tvCurrentQuestionNumberOfTotal.text =
-                    "${questionIndex + 1} of ${viewModel.getNumberOfQuestionsInSection()}"
-
-                if (questionIndex + 1 == viewModel.getNumberOfQuestionsInSection()) {
-                    btnNextQuestion.isEnabled = false
-                }
-
-                val questionData = viewModel.getQuestion()
-
-
-                if (questionData.question == null) {
-                    questionLayout.visibility = View.GONE
-                } else {
-                    animateQuestionLo()
-                    tvQuestion.text = questionData.question
-                }
-
-                if (questionData.image == null) {
-                    imageLo.visibility = View.GONE
-                } else {
-                    animateImageLo()
-                    imageLo.visibility = View.VISIBLE
-                    imageView.setImageResource(ResourceImages.images[questionData.image]!!)
-
-                }
-
-                if (questionData.twoStatements == null) {
-                    twoStatementLo.visibility = View.GONE
-                } else {
-                    questionData.twoStatements.forEachIndexed { index, s ->
-                        twoStatements[index].text = s
-                    }
-                    animateTwoStatementsLo()
-                }
-
-                if (questionData.nonSelectableOptions == null) {
-                    nonSelectableOptionsLo.visibility = View.GONE
-                } else {
-                    questionData.nonSelectableOptions.forEachIndexed { index, s ->
-                        nonSelectableOptions[index].text = s
-                    }
-                    animateNonSelectableOptionsLo()
-                }
-
-                questionData.selectableOptions.forEachIndexed { index, s ->
-                    selectableOptions[index].text = "${viewModel.getLetters()[index]}. $s"
-                }
-                animateCardSelectableLayouts()
-//                animateSelectableOptionsLo()
-
-                viewModel.getIsQuestionAnswered()
-                    .observe(viewLifecycleOwner, Observer { isQuestionAnswered ->
-                        when (isQuestionAnswered) {
-                            true -> {
-                                btnNextQuestion.isEnabled = true
-                                if (questionIndex + 1 == viewModel.getNumberOfQuestionsInSection()) {
-                                    btnNextQuestion.isEnabled = false
-                                }
-                            }
-                            else -> {
-                                btnNextQuestion.isEnabled = false
-                            }
-                        }
-                    })
-
-
-            })
-
-        viewModel.getNumberOfQuestionsAnswered()
-            .observe(viewLifecycleOwner, Observer {
+        // Observe the number of answered questions and enable "Result" button if all questions are answered
+        viewModel.numberOfQuestionsAnswered
+            .observe(viewLifecycleOwner) {
+                println("Number of questions answered: $it")
                 if (it == viewModel.getNumberOfQuestionsInSection()) {
-                    btnResult.isEnabled = true
+                    binding.btnResult.isEnabled = true // Enable "Result" button
                 }
-            })
+            }
+    }
+
+    private fun setupViewListeners(){
+        binding.btnResult.setOnClickListener {
+            onRequestToGoToResultListener.onRequestToGoToResult(viewModel.getSectionResultData())
+        }
     }
 
     private fun startTimer() {
         viewModel.startTimer()
     }
 
-    private fun nextQuestion() {
-        resetSelectedQuestionOptionBackground()
-//        resetAllSelectableOptions()
-        viewModel.incrementQuestionIndex()
-
-    }
-
-    private fun initViews(view: View) {
-
-        svQuestion = view.findViewById(R.id.svQuestion)
-        tvTimer = view.findViewById(R.id.tvTimer)
-
-        tvCurrentQuestionNumberOfTotal = view.findViewById(R.id.tvCurrentQuestionOfTotal)
-
-        btnResult = view.findViewById(R.id.btnResult)
-        btnNextQuestion = view.findViewById(R.id.btnNext)
-
-        questionLayout = view.findViewById(R.id.questionLayout)
-        imageLo = view.findViewById(R.id.imageCardLayout)
-        twoStatementLo = view.findViewById(R.id.twoStatementsLayout)
-        nonSelectableOptionsLo = view.findViewById(R.id.nonSelectableOptionsLayout)
-
-        tvQuestion = view.findViewById(R.id.tvQuestion)
-        imageView = view.findViewById(R.id.imgView)
-        tvFirstStatement = view.findViewById(R.id.tvFirstStatement)
-        tvSecondStatement = view.findViewById(R.id.tvSecondStatement)
-        twoStatements.add(tvFirstStatement)
-        twoStatements.add(tvSecondStatement)
-
-        tvNonSelectableOption1 = view.findViewById(R.id.tvNonSelectableOption1)
-        tvNonSelectableOption2 = view.findViewById(R.id.tvNonSelectableOption2)
-        tvNonSelectableOption3 = view.findViewById(R.id.tvNonSelectableOption3)
-        nonSelectableOptions.add(tvNonSelectableOption1)
-        nonSelectableOptions.add(tvNonSelectableOption2)
-        nonSelectableOptions.add(tvNonSelectableOption3)
-
-        tvSelectableOption1 = view.findViewById(R.id.tvSelectableOption1)
-        textColor = tvSelectableOption1.currentTextColor
-
-        tvSelectableOption2 = view.findViewById(R.id.tvSelectableOption2)
-        tvSelectableOption3 = view.findViewById(R.id.tvSelectableOption3)
-        tvSelectableOption4 = view.findViewById(R.id.tvSelectableOption4)
-        selectableOptions.add(tvSelectableOption1)
-        selectableOptions.add(tvSelectableOption2)
-        selectableOptions.add(tvSelectableOption3)
-        selectableOptions.add(tvSelectableOption4)
-
-//        selectableOptions.forEachIndexed { index, _ ->
-//            selectableOptions[index].background = context?.resources?.getDrawable(R.drawable.default_background)
-//        }
-
-        layoutOption1 = view.findViewById(R.id.layoutOption1)
-        background = layoutOption1.background
-
-        layoutOption1.setOnClickListener(this)
-        layoutOption2 = view.findViewById(R.id.layoutOption2)
-        layoutOption2.setOnClickListener(this)
-
-        layoutOption3 = view.findViewById(R.id.layoutOption3)
-        layoutOption3.setOnClickListener(this)
-
-        layoutOption4 = view.findViewById(R.id.layoutOption4)
-        layoutOption4.setOnClickListener(this)
-        optionsLayouts.add(layoutOption1)
-        optionsLayouts.add(layoutOption2)
-        optionsLayouts.add(layoutOption3)
-        optionsLayouts.add(layoutOption4)
-
-        cardSelectableOption1 = view.findViewById(R.id.cardSelectableOption1)
-        cardSelectableOption2 = view.findViewById(R.id.cardSelectableOption2)
-        cardSelectableOption3 = view.findViewById(R.id.cardSelectableOption3)
-        cardSelectableOption4 = view.findViewById(R.id.cardSelectableOption4)
-        cardSelectableLayouts.add(cardSelectableOption1)
-        cardSelectableLayouts.add(cardSelectableOption2)
-        cardSelectableLayouts.add(cardSelectableOption3)
-        cardSelectableLayouts.add(cardSelectableOption4)
-
-    }
-
     override fun onResume() {
         super.onResume()
         requireActivity().title = viewModel.getSectionTitle()
+        setupSectionRecyclerView()
+        startTimer()
 //        displayDirectionsDialog()
 
 
@@ -395,39 +208,39 @@ class SectionFragment : Fragment(), OnClickListener {
         }
     }
 
-    private fun setAnimationOnQuestionViewItems(){
-//        svQuestion.startAnimation(fadeTransition)
-
-    }
-    private fun animateQuestionLo(){
-        questionLayout.startAnimation(fadeScale)
-    }
-
-    private fun animateImageLo(){
-        imageLo.startAnimation(fadeScale)
-    }
-    private fun animateTwoStatementsLo(){
-        twoStatementLo.startAnimation(fadeScale)
-    }
-    private fun animateNonSelectableOptionsLo(){
-        nonSelectableOptionsLo.startAnimation(fadeScale)
-    }
-    private fun animateSelectableOptionsLo(){
-        optionsLayouts.forEach {
-            it.startAnimation(fadeScale)
-        }
-    }
-
-    private fun animateCardSelectableLayouts(){
-        cardSelectableLayouts.forEach {
-            it.startAnimation(fadeScale)
-        }
-    }
+//    private fun setAnimationOnQuestionViewItems(){
+////        svQuestion.startAnimation(fadeTransition)
+//
+//    }
+//    private fun animateQuestionLo(){
+//        questionLayout.startAnimation(fadeScale)
+//    }
+//
+//    private fun animateImageLo(){
+//        imageLo.startAnimation(fadeScale)
+//    }
+//    private fun animateTwoStatementsLo(){
+//        twoStatementLo.startAnimation(fadeScale)
+//    }
+//    private fun animateNonSelectableOptionsLo(){
+//        nonSelectableOptionsLo.startAnimation(fadeScale)
+//    }
+//    private fun animateSelectableOptionsLo(){
+//        optionsLayouts.forEach {
+//            it.startAnimation(fadeScale)
+//        }
+//    }
+//
+//    private fun animateCardSelectableLayouts(){
+//        cardSelectableLayouts.forEach {
+//            it.startAnimation(fadeScale)
+//        }
+//    }
 
     companion object {
 
         @JvmStatic
-        fun newInstance(sectionIndex: Int, sectionData: SectionDataModel): Fragment {
+        fun newInstance(sectionIndex: Int, sectionData: SectionData): Fragment {
             val bundle = Bundle().apply {
                 putSerializable(SECTION_DATA, sectionData)
                 putInt(SECTION_INDEX, sectionIndex)
@@ -439,115 +252,13 @@ class SectionFragment : Fragment(), OnClickListener {
         }
     }
 
-    override fun onClick(p0: View?) {
-        when (p0!!.id) {
-            R.id.btnNext -> {
-                nextQuestion()
-            }
-            R.id.btnResult -> {
 
-                onRequestToGoToResultListener.onRequestToGoToResult(viewModel.getSectionResultData())
-            }
-//            R.id.layoutOption1, R.id.layoutOption2, R.id.layoutOption3, R.id.layoutOption4 -> {
-//                when (p0.id) {
-//                    R.id.layoutOption1 -> {
-//
-//                        updateOptionSelected(p0,0)
-//                    }
-//                    R.id.layoutOption2 -> {
-//                        updateOptionSelected(p0, 1)
-//                    }
-//                    R.id.layoutOption3 -> {
-//                        updateOptionSelected(p0, 2)
-//                    }
-//                    R.id.layoutOption4 -> {
-//                        updateOptionSelected(p0, 3)
-//                    }
-//                }
-//            }
-            R.id.layoutOption1 -> {
-
-                updateOptionSelected(p0,0)
-            }
-            R.id.layoutOption2 -> {
-                updateOptionSelected(p0, 1)
-            }
-            R.id.layoutOption3 -> {
-                updateOptionSelected(p0, 2)
-            }
-            R.id.layoutOption4 -> {
-                updateOptionSelected(p0, 3)
-            }
-        }
+    override fun onAlternativeItemRadioButtonCheckStateChanged(
+        questionIndex: Int,
+        selectableOptionIndex: Int
+    ) {
+        viewModel.updateUserSelection(questionIndex, selectableOptionIndex)
     }
-
-    private fun disableSelectableOptions(){
-        optionsLayouts.forEach {
-            it.isEnabled = false
-        }
-
-    }
-
-    private fun updateOptionSelected(view: View, optionSelectedIndex: Int) {
-
-        changeSelectedQuestionOptionBackground(view, optionSelectedIndex)
-
-    }
-
-
-    private fun changeSelectedQuestionOptionBackground(view: View, optionSelectedIndex: Int) {
-        viewModel.updateUserSelection(optionSelectedIndex)
-//        if(background == null){
-//            textColor = selectableOptions[optionSelectedIndex].textColors
-////            println("Initial background: $background")
-//
-//
-//
-//        }
-        optionsLayouts.forEachIndexed { index, _ ->
-            if( index != optionSelectedIndex){
-                optionsLayouts[index].background = requireContext().resources.getDrawable(R.drawable.default_background)
-//                optionsLayouts[optionSelectedIndex].background = background
-//                selectableOptions[index].setTextColor(resources.getColor(R.color.color_primary_text_default))
-                textColor?.let{
-                    selectableOptions[index].setTextColor(it)
-                }
-
-            }else{
-
-
-//                if (context?.packageManager?.getActivityInfo(requireActivity().componentName, 0)?.theme != android.R.style.Theme_Light){
-//
-//                    selectableOptions[optionSelectedIndex].setTextColor(resources.getColor(androidx.appcompat.R.color.primary_text_default_material_light))
-//                }
-                optionsLayouts[optionSelectedIndex].background = requireContext().resources.getDrawable(R.drawable.selected_drawable)
-                selectableOptions[optionSelectedIndex].setTextColor(resources.getColor(R.color.color_primary_text_default))
-
-            }
-
-        }
-
-
-//        println("Initial background2: $background")
-
-    }
-
-
-    private fun resetSelectedQuestionOptionBackground() {
-//
-
-        optionsLayouts.forEachIndexed { index, _ ->
-//            optionsLayouts[index].background = requireContext().resources.getDrawable(R.drawable.default_background)
-            optionsLayouts[index].background = background
-//            selectableOptions[index].setTextColor(resources.getColor(R.color.color_primary_text_default))
-            textColor?.let{
-                selectableOptions[index].setTextColor(it)
-            }
-        }
-//        background = null
-//        textColor = null
-    }
-
 
 
 }

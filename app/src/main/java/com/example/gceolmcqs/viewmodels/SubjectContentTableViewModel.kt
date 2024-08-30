@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gceolmcqs.ActivationExpiryDatesGenerator
-import com.example.gceolmcqs.datamodels.ExamItemDataModel
-import com.example.gceolmcqs.datamodels.ExamTypeDataModel
+import com.example.gceolmcqs.datamodels.ExamItemData
+import com.example.gceolmcqs.datamodels.ExamTypeData
 import com.example.gceolmcqs.datamodels.SubjectData
 import com.example.gceolmcqs.datamodels.SubjectPackageData
 import com.example.gceolmcqs.roomDB.GceOLMcqDatabase
@@ -55,7 +55,7 @@ class SubjectContentTableViewModel : ViewModel() {
 
     }
 
-    fun getExamTypeDataAt(position: Int): ExamTypeDataModel {
+    fun getExamTypeDataAt(position: Int): ExamTypeData {
         return (subjectData.contents!![position])
     }
 
@@ -67,10 +67,10 @@ class SubjectContentTableViewModel : ViewModel() {
         return (subjectData.contents!!.size)
     }
 
-    private fun setExamContents(examTypeDataModel: ExamTypeDataModel, index: Int) {
+    private fun setExamContents(examTypeData: ExamTypeData, index: Int) {
         val examContents: ArrayList<String> = ArrayList()
 
-        examTypeDataModel.examItems.forEach {
+        examTypeData.examItems.forEach {
             examContents.add(it.title)
             setExamContentsFileNames(it)
         }
@@ -78,8 +78,8 @@ class SubjectContentTableViewModel : ViewModel() {
 
     }
 
-    private fun setExamContentsFileNames(examItemDataModel: ExamItemDataModel) {
-        examContentsFileNames[examItemDataModel.title] = examItemDataModel.fileName
+    private fun setExamContentsFileNames(examItemData: ExamItemData) {
+        examContentsFileNames[examItemData.title] = examItemData.fileName
     }
 
     fun getIsPackageActive(): LiveData<Boolean> {

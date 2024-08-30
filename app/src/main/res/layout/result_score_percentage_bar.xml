@@ -5,86 +5,45 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="56dp"
-
-    android:gravity="center">
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:background="@color/color_tab"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/score"
-            android:textColor="@color/color_on_primary"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:paddingStart="@dimen/margin_14"
-            android:paddingEnd="@dimen/margin_8"/>
-
-
-        <TextView
-            android:id="@+id/tvSectionScore"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="6/6"
-            android:textColor="@color/color_on_primary"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:paddingEnd="@dimen/margin_14"/>
-
-    </LinearLayout>
-
+    android:background="@color/color_tab"
+    android:gravity="center_vertical|end"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
     <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="0.5"
+        android:layout_margin="4dp"
+        app:cardCornerRadius="8dp"
+        app:contentPadding="4dp"
         app:cardBackgroundColor="@color/color_primary"
-        android:layout_margin="@dimen/margin_4"
-        app:cardCornerRadius="@dimen/margin_8"
-        android:visibility="gone">
-
+        app:cardElevation="8dp">
         <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="visible">
-
+            android:layout_height="match_parent">
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/percentage"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_16"
-                android:textStyle="bold" />
-
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/divided_width_2"
-                android:layout_marginStart="@dimen/margin_8"
-                android:layout_marginEnd="@dimen/margin_8"
-                android:background="@color/color_on_primary"
-                android:visibility="gone"/>
-
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/score"
+                android:textColor="@color/color_on_primary"
+                android:textSize="18sp"
+                android:paddingEnd="4dp"/>
             <TextView
-                android:id="@+id/tvSectionPercentage"
+                android:id="@+id/tvSectionScore"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="100"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_16"
-                android:textStyle="bold" />
+                android:text="10/10"
+                android:textColor="@color/color_on_primary"
+                android:textSize="18sp" />
+
+
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+
+
 
 </LinearLayout>

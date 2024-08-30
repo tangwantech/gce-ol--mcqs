@@ -13,7 +13,7 @@ import com.example.gceolmcqs.MCQConstants
 import com.example.gceolmcqs.R
 import com.example.gceolmcqs.adapters.SectionNavigationRecyclerViewAdapter
 import com.example.gceolmcqs.adapters.SectionRecyclerAdapter
-import com.example.gceolmcqs.datamodels.ExamItemDataModel
+import com.example.gceolmcqs.datamodels.ExamItemData
 import com.example.gceolmcqs.datamodels.QuestionWithUserAnswerMarkedData
 import com.example.gceolmcqs.datamodels.SectionResultData
 import com.example.gceolmcqs.datamodels.UserMarkedAnswersSheetData
@@ -32,7 +32,7 @@ class PaperActivity : SubscriptionActivity(),
     OnRequestToGoToResultListener,
     OnPaperScoreListener,
     OnIsSectionAnsweredListener,
-    SectionRecyclerAdapter.ExplanationClickListener
+    SectionRecyclerAdapter.OnExplanationClickListener
 {
 
     private lateinit var _viewModel: PaperActivityViewModel
@@ -51,17 +51,17 @@ class PaperActivity : SubscriptionActivity(),
         setContentView(R.layout.activity_paper)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         setupViewModel()
-        displayPaperInstructionDialog()
+//        displayPaperInstructionDialog()
         loadFragment()
 
     }
 
     private fun setupViewModel(){
         val bundle = intent.getBundleExtra("paperData")
-        val examItemDataModel = bundle!!.getSerializable("paperSerializable") as ExamItemDataModel
+        val examItemData = bundle!!.getSerializable("paperSerializable") as ExamItemData
 
         _viewModel = ViewModelProvider(this)[PaperActivityViewModel::class.java]
-        _viewModel.setExamItemData(examItemDataModel)
+        _viewModel.setExamItemData(examItemData)
         _viewModel.setSubjectName(bundle.getString("subjectName")!!)
 
 //        paperDataJsonString = getJsonFromAssets(_viewModel.getExamFileName())

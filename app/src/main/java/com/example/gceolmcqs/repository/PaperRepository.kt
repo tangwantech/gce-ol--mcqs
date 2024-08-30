@@ -4,15 +4,15 @@ import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.gceolmcqs.MCQConstants
-import com.example.gceolmcqs.datamodels.PaperDataModel
-import com.example.gceolmcqs.datamodels.SectionDataModel
+import com.example.gceolmcqs.datamodels.PaperData
+import com.example.gceolmcqs.datamodels.SectionData
 import com.example.gceolmcqs.datamodels.SectionResultData
 import com.example.gceolmcqs.datamodels.UserMarkedAnswersSheetData
 import com.google.gson.Gson
 
 class PaperRepository {
     companion object{
-        private var paperDataModel: PaperDataModel? = null
+        private var paperData: PaperData? = null
         private var currentSectionIndex = 0
 
         private var sectionsAnsweredData: ArrayList<Boolean> = ArrayList()
@@ -37,7 +37,7 @@ class PaperRepository {
 
         fun initPaperData(paperDataJsonString: String?){
             if(paperDataJsonString != null){
-                paperDataModel = Gson().fromJson(paperDataJsonString, PaperDataModel::class.java)
+                paperData = Gson().fromJson(paperDataJsonString, PaperData::class.java)
                 initSectionsAnswered()
                 initSectionScores()
             }
@@ -74,24 +74,24 @@ class PaperRepository {
         }
 
         private fun initSectionScores(){
-            for(sectionIndex in 0..paperDataModel!!.numberOfSections){
+            for(sectionIndex in 0..paperData!!.numberOfSections){
                 sectionsScores.value!!.add(0)
             }
         }
 
         private fun initSectionsAnswered(){
-            for(sectionIndex in 0..paperDataModel!!.numberOfSections){
+            for(sectionIndex in 0..paperData!!.numberOfSections){
                 sectionsAnsweredData.add(false)
             }
 
         }
 
-        fun getSectionDataAt(position: Int): SectionDataModel {
-            return paperDataModel!!.sections[position]
+        fun getSectionDataAt(position: Int): SectionData {
+            return paperData!!.sections[position]
         }
 
         fun getNumberOfSections(): Int{
-            return paperDataModel!!.numberOfSections
+            return paperData!!.numberOfSections
         }
 
         fun updateSectionScoreAt(sectionIndex: Int, score: Int){
@@ -168,7 +168,7 @@ class PaperRepository {
         fun getSectionResultData(): SectionResultData = sectionResultData!!
 
         fun getTotalNumberOfQuestions():Int{
-            return paperDataModel!!.numberOfQuestions
+            return paperData!!.numberOfQuestions
         }
 
         fun getNumberOfSectionsAnswered():LiveData<Int> {
@@ -177,7 +177,7 @@ class PaperRepository {
 
         fun getSectionNames(): Array<String>?{
             var sectionNames: Array<String>? = null
-            paperDataModel?.let {
+            paperData?.let {
                 sectionNames = Array(it.sections.size){""}
                 it.sections.forEachIndexed { index, sectionDataModel ->
                     sectionNames!![index] = sectionDataModel.title
@@ -190,7 +190,7 @@ class PaperRepository {
         }
         fun getSectionNameBundleList(): Array<Bundle>?{
             var sectionNameBundleList: Array<Bundle>? = null
-            paperDataModel?.let {
+            paperData?.let {
                 sectionNameBundleList = Array(it.sections.size){ Bundle() }
                 it.sections.forEachIndexed { index, sectionDataModel ->
                     sectionNameBundleList!![index].apply {

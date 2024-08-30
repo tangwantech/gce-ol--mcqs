@@ -14,6 +14,8 @@ import com.example.gceolmcqs.AssertReader
 import com.example.gceolmcqs.MCQConstants
 import com.example.gceolmcqs.viewmodels.SplashActivityViewModel
 import com.example.gceolmcqs.R
+import com.example.gceolmcqs.databinding.ActivitySplashBinding
+import com.example.gceolmcqs.databinding.TermsOfUseLayoutBinding
 import kotlinx.coroutines.*
 import java.io.IOException
 import java.nio.charset.Charset
@@ -24,11 +26,13 @@ class GCEFirstActivity : AppCompatActivity() {
     private lateinit var pref: SharedPreferences
     private var termsOfServiceDialog: AlertDialog? = null
     private var initializingAppDialog: AlertDialog? = null
+    private lateinit var binding: ActivitySplashBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 //        supportActionBar?.hide()
         pref = getSharedPreferences(resources.getString(R.string.app_name), MODE_PRIVATE)
 
@@ -111,22 +115,28 @@ class GCEFirstActivity : AppCompatActivity() {
     }
 
     private fun displayTermsOfServiceDialog(){
-        val view = LayoutInflater.from(this).inflate(R.layout.terms_of_use_layout, null)
-        val tvTermsOfService: TextView = view.findViewById(R.id.btnTerms)
-        val tvPrivacyPolicy: TextView = view.findViewById(R.id.btnPrivacyPolicy)
-        tvTermsOfService.setOnClickListener {
+//        val view = LayoutInflater.from(this).inflate(R.layout.terms_of_use_layout, null)
+        val dialogBinding = TermsOfUseLayoutBinding.inflate(layoutInflater)
+
+        dialogBinding.btnTerms.setOnClickListener {
             gotoTermsOfServiceActivity()
         }
-        tvPrivacyPolicy.setOnClickListener {
+
+//        tvTermsOfService.setOnClickListener {
+//            gotoTermsOfServiceActivity()
+//        }
+
+       dialogBinding.btnPrivacyPolicy.setOnClickListener {
 
         }
+
 
         termsOfServiceDialog = AlertDialog.Builder(this).create()
         termsOfServiceDialog?.setTitle(resources.getString(R.string.agreement))
-        termsOfServiceDialog?.setView(view)
+        termsOfServiceDialog?.setView(dialogBinding.root)
         termsOfServiceDialog?.setButton(AlertDialog.BUTTON_POSITIVE, resources.getString(R.string.accept)) { _, _ ->
             saveTermsOfServiceAcceptedStatus(true)
-//            displayInitializingAppDialog()
+
             checkIsTermsOfServiceAccepted()
 
         }

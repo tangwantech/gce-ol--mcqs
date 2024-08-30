@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gceolmcqs.R
 //import com.example.gceolmcq.fragments.OnSectionAnsweredListener
@@ -26,7 +27,7 @@ class SectionNavigationRecyclerViewAdapter(
         val tvSectionNumberOfQuestions: TextView = view.findViewById(R.id.tvSectionNumberOfQuestions)
         val sectionNavItemLayout: LinearLayout = view.findViewById(R.id.sectionNavItemLayout)
 //        val imgSectionAnsweredCheck: ImageView = view.findViewById(R.id.imgSectionAnsweredCheck)
-        val scoreLo: LinearLayout = view.findViewById(R.id.scoreLo)
+        val scoreLo: CardView = view.findViewById(R.id.scoreLo)
         val tvSectionScore: TextView = view.findViewById(R.id.tvSectionScore)
 
         init{

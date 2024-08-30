@@ -8,18 +8,18 @@ import com.example.gceolmcqs.repository.PaperRepository
 class PaperActivityViewModel:ViewModel() {
     private var currentFragmentIndex: Int? = null
     private lateinit var subjectName: String
-    private var examItemDataModel: ExamItemDataModel? = null
+    private var examItemData: ExamItemData? = null
 
-    fun setExamItemData(examItemDataModel: ExamItemDataModel){
-        this.examItemDataModel = examItemDataModel
+    fun setExamItemData(examItemData: ExamItemData){
+        this.examItemData = examItemData
     }
 
     fun getExamFileName(): String{
-        return examItemDataModel!!.fileName
+        return examItemData!!.fileName
     }
 
     fun getExamTitle(): String{
-        return examItemDataModel!!.title
+        return examItemData!!.title
     }
 
     fun setCurrentFragmentIndex(index: Int){
@@ -59,7 +59,7 @@ class PaperActivityViewModel:ViewModel() {
         return PaperRepository.getTotalNumberOfQuestions()
     }
 
-    fun getSectionData(position: Int):SectionDataModel{
+    fun getSectionData(position: Int):SectionData{
         return PaperRepository.getSectionDataAt(position)
     }
 

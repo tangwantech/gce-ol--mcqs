@@ -6,20 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.GCEFirstActivity"
-    android:orientation="vertical">
-    <LinearLayout
-        android:orientation="vertical"
-        android:id="@+id/appNameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:background="@color/background2">
+    android:orientation="vertical"
+    android:gravity="center">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logo" />
-    </LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo" />
 
     
 </RelativeLayout>

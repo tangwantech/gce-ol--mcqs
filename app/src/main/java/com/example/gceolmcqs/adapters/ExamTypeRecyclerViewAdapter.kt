@@ -8,12 +8,12 @@ import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gceolmcqs.R
-import com.example.gceolmcqs.datamodels.ExamItemDataModel
+import com.example.gceolmcqs.datamodels.ExamItemData
 
 
 class ExamTypeRecyclerViewAdapter(
     private val context: Context,
-    private val examItemsData: ArrayList<ExamItemDataModel>,
+    private val examItemsData: ArrayList<ExamItemData>,
     private val listener: OnRecyclerItemClickListener
     ) : RecyclerView.Adapter<ExamTypeRecyclerViewAdapter.ViewHolder>(){
 

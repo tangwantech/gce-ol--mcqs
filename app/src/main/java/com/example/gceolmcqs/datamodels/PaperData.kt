@@ -1,21 +1,21 @@
 package com.example.gceolmcqs.datamodels
 
-data class PaperDataModel(
+data class PaperData(
     val privateTitle: String,
     val publicTitle: String,
     val numberOfQuestions: Int,
     val numberOfSections: Int,
-    val sections: ArrayList<SectionDataModel>
+    val sections: ArrayList<SectionData>
 ) : java.io.Serializable
 
-data class SectionDataModel(
+data class SectionData(
     val title: String,
     val numberOfQuestions: Int,
     val directions: String,
-    val questions: ArrayList<QuestionDataModel>
+    val questions: ArrayList<QuestionData>
 ) : java.io.Serializable
 
-data class QuestionDataModel(
+data class QuestionData(
     val questionNumber: String,
     val question: String?,
     val image: String?,
