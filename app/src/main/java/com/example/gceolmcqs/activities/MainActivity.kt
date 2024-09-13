@@ -94,12 +94,6 @@ class MainActivity : SubscriptionActivity(),
     }
 
     private fun displayView() {
-//        if (!areSubjectsPackagesAvailable()) {
-//            gotoActivateTrialPackageFragment()
-//        } else {
-//            gotoHomeFragment()
-//
-//        }
         gotoHomeFragment()
     }
 

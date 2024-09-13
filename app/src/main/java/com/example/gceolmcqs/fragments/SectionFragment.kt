@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gceolmcqs.activities.OnRequestToGoToResultListener
 import com.example.gceolmcqs.R
@@ -30,7 +31,6 @@ class SectionFragment : Fragment(), SectionQuestionsRecyclerAdapter.OnAlternativ
     private lateinit var viewModel: SectionFragmentViewModel
 
     private lateinit var binding: FragmentSectionBinding
-
 
     private var fadeInOut: Animation? = null
     private var fadeTransition: Animation? = null
@@ -129,11 +129,13 @@ class SectionFragment : Fragment(), SectionQuestionsRecyclerAdapter.OnAlternativ
         val layoutMan = LinearLayoutManager(requireContext()).apply {
             orientation = LinearLayoutManager.VERTICAL
         }
-
         binding.recyclerView.layoutManager = layoutMan
+
+        binding.recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
 
         val sectionQuestionsAdapter = SectionQuestionsRecyclerAdapter(requireContext(), viewModel.getSectionTitle(), viewModel.getSectionQuestions(), this)
         binding.recyclerView.adapter = sectionQuestionsAdapter
+        binding.recyclerView.setHasFixedSize(true)
     }
 
     @SuppressLint("SetTextI18n") // Suppress lint warning for hardcoded text concatenation

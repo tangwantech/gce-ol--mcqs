@@ -130,8 +130,9 @@ class SectionRecyclerAdapter(
     private fun setupResult(questionData: QuestionWithUserAnswerMarkedData, holder: ViewHolder){
         holder.layoutUserAnswer.visibility = View.VISIBLE
         holder.layoutCorrectAnswer.visibility = View.GONE
-        holder.layoutExplanationBtn.visibility = View.GONE
+        holder.layoutExplanationBtn .visibility = View.GONE
         holder.selectableOptionsLayout.visibility = View.GONE
+
         if (questionData.userSelection == null){
 //            holder.layoutUserAnswer.visibility = View.VISIBLE
             holder.tvUserAnswer.text = context.resources.getString(R.string.no_answer_selected)

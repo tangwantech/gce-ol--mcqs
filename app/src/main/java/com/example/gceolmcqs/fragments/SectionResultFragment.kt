@@ -126,8 +126,9 @@ class SectionResultFragment : Fragment() {
 
     private fun initViews(view: View){
         val tvSectionScore: TextView = view.findViewById(R.id.tvSectionScore)
-        tvSectionScore.text =
-            "${sectionResultFragmentViewModel.getNumberOfCorrectAnswers()}/${sectionResultFragmentViewModel.getNumberOfQuestions()}"
+        val score = "${sectionResultFragmentViewModel.getNumberOfCorrectAnswers()}/${sectionResultFragmentViewModel.getNumberOfQuestions()}"
+        tvSectionScore.text = requireContext().getString(R.string.section_score, score)
+
 
 //        val tvSectionPercentage: TextView = view.findViewById(R.id.tvSectionPercentage)
 //        tvSectionPercentage.text =

@@ -27,7 +27,7 @@ class SectionNavigationRecyclerViewAdapter(
         val tvSectionNumberOfQuestions: TextView = view.findViewById(R.id.tvSectionNumberOfQuestions)
         val sectionNavItemLayout: LinearLayout = view.findViewById(R.id.sectionNavItemLayout)
 //        val imgSectionAnsweredCheck: ImageView = view.findViewById(R.id.imgSectionAnsweredCheck)
-        val scoreLo: CardView = view.findViewById(R.id.scoreLo)
+        val scoreLo: LinearLayout = view.findViewById(R.id.scoreLo)
         val tvSectionScore: TextView = view.findViewById(R.id.tvSectionScore)
 
         init{

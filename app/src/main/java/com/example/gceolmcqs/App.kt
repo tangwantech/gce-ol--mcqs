@@ -2,9 +2,6 @@ package com.example.gceolmcqs
 
 import android.app.Application
 import com.parse.Parse
-//import net.compay.android.CamPay
-
-//import net.compay.android.CamPay
 
 class App: Application() {
 
@@ -19,13 +16,8 @@ class App: Application() {
                 .build()
         )
 
-//        CamPay.init(
-//            getString(R.string.campay_app_user_name),
-//            getString(R.string.campay_app_pass_word),
-//            CamPay.Environment.DEV // environment
-//        )
-
 
     }
+
 
 }

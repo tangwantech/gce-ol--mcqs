@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gceolmcqs.R
@@ -40,6 +41,8 @@ class RecyclerViewFragment : Fragment() {
         val layoutMan = LinearLayoutManager(requireContext())
         layoutMan.orientation = LinearLayoutManager.VERTICAL
         rv.layoutManager = layoutMan
+
+        rv.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
 
         val userMarkedAnswersSheet =
             requireArguments().getSerializable(QUESTION_USER_ANSWER) as UserMarkedAnswersSheetData

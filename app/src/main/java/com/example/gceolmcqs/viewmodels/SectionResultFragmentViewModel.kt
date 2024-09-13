@@ -71,6 +71,7 @@ class SectionResultFragmentViewModel: ViewModel() {
     }
 
     fun getUserMarkedAnswersSheet(): UserMarkedAnswersSheetData {
+        println("User marked answer sheet: ${sectionResultData.userMarkedAnswersSheet}")
         return sectionResultData.userMarkedAnswersSheet
     }
     fun getQuestionsWithCorrectAnswer(): UserMarkedAnswersSheetData {

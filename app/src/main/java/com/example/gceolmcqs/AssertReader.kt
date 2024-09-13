@@ -8,16 +8,9 @@ class AssertReader {
     companion object{
         fun getJsonFromAssets(context: Context, fileName: String): String? {
             lateinit var json: String
-            val charset: Charset = Charsets.UTF_8
 
             try {
-                val jsonFile = context.assets.open(fileName)
-                val size = jsonFile.available()
-                val buffer = ByteArray(size)
-
-                jsonFile.read(buffer)
-                jsonFile.close()
-                json = String(buffer, charset)
+                json = context.assets.open(fileName).bufferedReader().use { it.readText() }
 
             } catch (e: IOException) {
                 return null

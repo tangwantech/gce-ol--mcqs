@@ -173,8 +173,6 @@ class SectionFragmentViewModel : ViewModel() {
                 for (index in 0..< sectionData!!.numberOfQuestions){
                     sectionData!!.questions[index].selectableOptions.shuffle()
                 }
-
-
             }
         }
         return sectionData?.questions!!
@@ -188,6 +186,7 @@ class SectionFragmentViewModel : ViewModel() {
             userMarkedAnswerSheet[index].twoStatements = questionDataModel.twoStatements
             userMarkedAnswerSheet[index].nonSelectableOptions =
                 questionDataModel.nonSelectableOptions
+//            userMarkedAnswerSheet[index].fourOptions = questionDataModel.selectableOptions.toString()
             userMarkedAnswerSheet[index].explanation = questionDataModel.explanation
 
         }
@@ -219,7 +218,7 @@ class SectionFragmentViewModel : ViewModel() {
         )
         userSelections[questionIndex] = userSelection
 
-        appendLetterToFourOptions()
+        appendLetterToFourOptions(questionIndex)
 
         userMarkedAnswerSheet[questionIndex].userSelection = userSelection
 
@@ -232,12 +231,12 @@ class SectionFragmentViewModel : ViewModel() {
         evaluateUserSelections(questionIndex)
     }
 
-    private fun appendLetterToFourOptions(){
+    private fun appendLetterToFourOptions(questionIndex: Int){
         var optionsWithLetterPrepended = ""
-        sectionData!!.questions[questionIndex.value!!].selectableOptions.forEachIndexed { index, s ->
+        sectionData!!.questions[questionIndex].selectableOptions.forEachIndexed { index, s ->
             optionsWithLetterPrepended += "${letters[index]}. $s\n"
         }
-        userMarkedAnswerSheet[questionIndex.value!!].fourOptions = optionsWithLetterPrepended
+        userMarkedAnswerSheet[questionIndex].fourOptions = optionsWithLetterPrepended
 //        userMarkedAnswerSheet[questionIndex.value!!].fourOptions = sectionDataModel!!.questions[questionIndex.value!!].selectableOptions.joinToString("\n")
     }
 

@@ -13,9 +13,9 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="0.8"
+        android:layout_weight="1"
         android:gravity="center_vertical">
         <TextView
             android:id="@+id/tvSectionNavItem"
@@ -33,40 +33,30 @@
 
     </LinearLayout>
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:id="@+id/scoreLo"
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp"
-        app:contentPadding="4dp">
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/score"
-                android:textSize="@dimen/text_size_12"
-                android:gravity="center"
-                android:paddingEnd="4dp"/>
-            <TextView
-                android:id="@+id/tvSectionScore"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="3/10"
-                android:textSize="@dimen/text_size_12"
-                android:gravity="center"/>
+            android:text="@string/score"
+            android:textSize="@dimen/text_size_12"
+            android:gravity="center"
+            android:paddingEnd="4dp"/>
+        <TextView
+            android:id="@+id/tvSectionScore"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="3/10"
+            android:textSize="@dimen/text_size_12"
+            android:gravity="center_vertical"/>
 
 
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-
-
+    </LinearLayout>
 
 </LinearLayout>

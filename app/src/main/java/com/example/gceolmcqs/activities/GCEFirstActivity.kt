@@ -1,12 +1,12 @@
 package com.example.gceolmcqs.activities
 
 import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.view.LayoutInflater
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -117,17 +117,12 @@ class GCEFirstActivity : AppCompatActivity() {
     private fun displayTermsOfServiceDialog(){
 //        val view = LayoutInflater.from(this).inflate(R.layout.terms_of_use_layout, null)
         val dialogBinding = TermsOfUseLayoutBinding.inflate(layoutInflater)
-
         dialogBinding.btnTerms.setOnClickListener {
             gotoTermsOfServiceActivity()
         }
 
-//        tvTermsOfService.setOnClickListener {
-//            gotoTermsOfServiceActivity()
-//        }
-
        dialogBinding.btnPrivacyPolicy.setOnClickListener {
-
+            gotoPrivacyPolicy()
         }
 
 
@@ -151,15 +146,21 @@ class GCEFirstActivity : AppCompatActivity() {
         startActivity(TermsOfServiceActivity.getIntent(this))
     }
 
-//    private fun displayInitializingAppDialog(){
-//        initializingAppDialog = AlertDialog.Builder(this).create()
-//        initializingAppDialog?.apply {
-//            setMessage("Initializing GCE OL MCQs...")
-//            setCancelable(false)
-//        }
-//        initializingAppDialog?.show()
-//
-//    }
+    private fun gotoPrivacyPolicy() {
+        val uri = Uri.parse(MCQConstants.PRIVACY_POLICY)
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        intent.addFlags(
+            Intent.FLAG_ACTIVITY_NO_HISTORY or
+                    Intent.FLAG_ACTIVITY_NEW_DOCUMENT or
+                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+        )
+
+        try {
+            startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(MCQConstants.PRIVACY_POLICY)))
+        }
+    }
 
     private fun displayServerTimeOutDialog(){
         val timeoutDialog = AlertDialog.Builder(this).apply {

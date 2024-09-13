@@ -18,26 +18,26 @@ class SectionQuestionsRecyclerAdapter(private val context: Context, val title: S
 
     inner class ViewHolder(val binding: QuestionCardItemBinding): RecyclerView.ViewHolder(binding.root){
         init {
-            binding.selectableOptionsLayout.rbSelectableOption1.setOnCheckedChangeListener { _, b ->
-                if (b) {
+            binding.selectableOptionsLayout.rbSelectableOption1.setOnCheckedChangeListener { _, state ->
+                if (state) {
                     onAlternativeItemRadioButtonCheckStateChangeListener.onAlternativeItemRadioButtonCheckStateChanged(adapterPosition, 0)
                 }
             }
 
-            binding.selectableOptionsLayout.rbSelectableOption2.setOnCheckedChangeListener { _, b ->
-                if (b) {
+            binding.selectableOptionsLayout.rbSelectableOption2.setOnCheckedChangeListener { _, state ->
+                if (state) {
                     onAlternativeItemRadioButtonCheckStateChangeListener.onAlternativeItemRadioButtonCheckStateChanged(adapterPosition, 1)
                 }
             }
 
-            binding.selectableOptionsLayout.rbSelectableOption3.setOnCheckedChangeListener { _, b ->
-                if (b) {
+            binding.selectableOptionsLayout.rbSelectableOption3.setOnCheckedChangeListener { _, state ->
+                if (state) {
                     onAlternativeItemRadioButtonCheckStateChangeListener.onAlternativeItemRadioButtonCheckStateChanged(adapterPosition, 2)
                 }
             }
 
-            binding.selectableOptionsLayout.rbSelectableOption4.setOnCheckedChangeListener { _, b ->
-                if (b) {
+            binding.selectableOptionsLayout.rbSelectableOption4.setOnCheckedChangeListener { _, state ->
+                if (state) {
                     onAlternativeItemRadioButtonCheckStateChangeListener.onAlternativeItemRadioButtonCheckStateChanged(adapterPosition, 3)
                 }
             }

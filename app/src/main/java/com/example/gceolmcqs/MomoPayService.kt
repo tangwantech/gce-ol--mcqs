@@ -1,9 +1,6 @@
 package com.example.gceolmcqs
 
 import android.content.Context
-import android.drm.DrmErrorEvent
-import android.drm.DrmManagerClient
-import android.drm.DrmManagerClient.OnErrorListener
 import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,19 +8,12 @@ import com.example.gceolmcqs.datamodels.SubscriptionFormData
 import com.example.gceolmcqs.datamodels.TransactionStatus
 
 import kotlinx.coroutines.*
-//import net.compay.android.CamPay
-//import net.compay.android.models.requests.CollectionRequest
-//import net.compay.android.CamPay
-//import net.compay.android.models.requests.CollectionRequest
 import okhttp3.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
-import java.util.UUID
-import java.util.concurrent.TimeUnit
 
 import javax.net.ssl.*
-import java.security.KeyStore
 import java.security.cert.X509Certificate
 
 
@@ -32,13 +22,10 @@ class MomoPayService(private val context: Context) {
         const val REFERENCE_ID = "reference"
         const val TOKEN = "token"
         const val STATUS = "status"
-        const val PENDING = "PENDING"
         const val SUCCESSFUL = "SUCCESSFUL"
-        const val FAILED = "FAILED"
-        val CODE = "code"
     }
 
-    //    private val client = OkHttpClient().newBuilder().build()
+
     private lateinit var client: OkHttpClient
 
     private var subscriptionFormData: SubscriptionFormData? = null
@@ -55,10 +42,9 @@ class MomoPayService(private val context: Context) {
     ) {
 
         this.subscriptionFormData = subscriptionFormData
-//        campay()
-        generateAccessToken(transactionStatusListener)
+//        generateAccessToken(transactionStatusListener)
 
-//        testUpdateTransactionSuccessful(transactionStatusListener)
+        testUpdateTransactionSuccessful(transactionStatusListener)
 
     }
 
@@ -80,18 +66,19 @@ class MomoPayService(private val context: Context) {
         )
 
 // Apply the SSLContext to your HTTP client (assuming you're using Retrofit or similar)
+
         client = OkHttpClient.Builder()
             .sslSocketFactory(sslContext.socketFactory, trustAllCertificates)
             .hostnameVerifier { _, _ -> true }
             .build()
 
         val requestBody = FormBody.Builder()
-            .add(MCQConstants.USER_NAME, context.resources.getString(R.string.campay_app_user_name))
-            .add(MCQConstants.PASS_WORD, context.resources.getString(R.string.campay_app_pass_word))
+            .add(MCQConstants.USER_NAME, context.getString(R.string.campay_app_user_name))
+            .add(MCQConstants.PASS_WORD, context.getString(R.string.campay_app_pass_word))
             .build()
 
         val request = Request.Builder()
-            .url(context.resources.getString(R.string.campay_token_url))
+            .url(context.getString(R.string.campay_token_url))
             .post(requestBody)
             .build()
         client.newCall(request).enqueue(object : Callback {
@@ -110,7 +97,6 @@ class MomoPayService(private val context: Context) {
                     val transaction = TransactionStatus()
                     val tokenString = json[TOKEN].toString()
                     transaction.token = tokenString
-//                    println("Access token $transaction")
                     transactionStatusListener.onTransactionTokenAvailable(tokenString)
                     requestToPay(
                         transaction,
@@ -134,19 +120,17 @@ class MomoPayService(private val context: Context) {
         momoNumber: String?,
         transactionStatusListener: TransactionStatusListener
     ) {
-//        val client = OkHttpClient().newBuilder().build()
+
         val requestBody = FormBody.Builder()
             .add(MCQConstants.AMOUNT, "$amountToPay")
             .add(MCQConstants.FROM, "${MCQConstants.COUNTRY_CODE}$momoNumber")
             .add(
                 MCQConstants.DESCRIPTION,
                 "${subscriptionFormData?.subject} ${subscriptionFormData?.packageType} ${MCQConstants.SUBSCRIPTION}"
-            )
-//            .add(MCQConstants.EXTERNAL_REFERENCE, "${UUID.randomUUID()}")
-            .build()
+            ).build()
 
         val request = Request.Builder()
-            .url(context.resources.getString(R.string.campay_requestToPay_url))
+            .url(context.getString(R.string.campay_requestToPay_url))
             .post(requestBody)
             .addHeader(MCQConstants.AUTHORIZATION, "${MCQConstants.TOKEN} ${transaction.token}")
             .build()
@@ -154,9 +138,8 @@ class MomoPayService(private val context: Context) {
         client.newCall(request).enqueue(object : Callback {
 
             override fun onFailure(call: Call, e: IOException) {
-                println("failed initiating request to pay ...... $transaction due to ${e.message}")
+//                println("failed initiating request to pay ...... $transaction due to ${e.message}")
 //                }
-
             }
 
             override fun onResponse(call: Call, response: Response) {
@@ -164,12 +147,8 @@ class MomoPayService(private val context: Context) {
                     val responseBody = response.body?.string()
                     val json = JSONObject(responseBody!!)
                     val refIdString = json[REFERENCE_ID].toString()
-//                    val code = json[CODE].toString()
-
                     transaction.refId = refIdString
                     transactionStatusListener.onTransactionIdAvailable(refIdString)
-//                    transactionStatusListener.onReferenceNumberAvailable(code)
-//                    checkTransactionStatus(transaction, transactionStatusListener)
                     runBlocking {
                         transaction.status = MCQConstants.PENDING
                         while (transaction.status!! == MCQConstants.PENDING) {
@@ -181,8 +160,6 @@ class MomoPayService(private val context: Context) {
                 } catch (e: JSONException) {
                     println("Inside json exception of on response of request to pay")
                     transactionStatusListener.onTransactionFailed()
-
-//                    transactionStatus.postValue(TransactionStatus(status = FAILED))
                 }
 
             }
@@ -212,9 +189,6 @@ class MomoPayService(private val context: Context) {
                     val responseBody = response.body?.string()
                     val jsonResponse = JSONObject(responseBody!!)
                     transaction.status = jsonResponse[STATUS].toString()
-//                    val code = jsonResponse[CODE].toString()
-                    println(responseBody)
-//                    transactionStatusListener.onReferenceNumberAvailable(code)
 //                    println(responseBody)
                     when (jsonResponse[STATUS].toString()) {
                         MCQConstants.PENDING -> {
@@ -225,11 +199,8 @@ class MomoPayService(private val context: Context) {
 
                             transactionStatusListener.onTransactionSuccessful()
                         }
-
                         MCQConstants.FAILED -> {
-//                            println("Failed Inside checking transaction status")
                             transactionStatusListener.onTransactionFailed()
-
                         }
                     }
 

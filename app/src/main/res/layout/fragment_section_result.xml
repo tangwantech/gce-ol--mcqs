@@ -3,22 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.SectionResultFragment">
 
 
    <RelativeLayout
+       android:id="@+id/relativeLayout"
        android:layout_width="match_parent"
        android:layout_height="match_parent">
-
-       <include layout="@layout/result_score_percentage_bar"
-           android:id="@+id/layoutScorePercentage"
+       
+       <androidx.appcompat.widget.LinearLayoutCompat
+           android:id="@+id/linearLo"
            android:layout_width="match_parent"
-           android:layout_height="56dp" />
+           android:layout_height="56dp"
+           android:gravity="center"
+           android:background="@color/color_primary">
+           <androidx.cardview.widget.CardView
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:minHeight="56dp"
+               app:cardCornerRadius="4dp"
+               android:layout_margin="2dp"
+               app:cardElevation="12dp"
+               app:contentPadding="8dp"
+               app:cardBackgroundColor="@color/color_primary">
+               <TextView
+                   android:id="@+id/tvSectionScore"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:gravity="center"
+                   android:text="@string/section_score"
+                   android:textSize="20sp"
+                   android:textColor="@color/color_on_primary"/>
+           </androidx.cardview.widget.CardView>
+       </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
        <FrameLayout
            android:id="@+id/rvFragmentHolder"
            android:layout_width="match_parent"
            android:layout_height="match_parent"
-           android:layout_below="@id/layoutScorePercentage"
+           android:layout_below="@id/linearLo"
            android:layout_above="@id/layoutBtnRetry"/>
 
        <LinearLayout
