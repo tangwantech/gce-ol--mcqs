@@ -73,7 +73,7 @@ dependencies {
     implementation ("com.github.kittinunf.fuel:fuel:$fuel_version")
     implementation("androidx.cardview:cardview:1.0.0")
 
-//    implementation ("com.github.CamPay.android-sdk:android-sdk:latest.release")
+    implementation ("com.github.CamPay.android-sdk:android-sdk:latest.release")
     // Peer dependency
     implementation (libs.rxjava)
 

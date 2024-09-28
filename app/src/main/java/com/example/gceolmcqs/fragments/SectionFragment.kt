@@ -135,6 +135,7 @@ class SectionFragment : Fragment(), SectionQuestionsRecyclerAdapter.OnAlternativ
 
         val sectionQuestionsAdapter = SectionQuestionsRecyclerAdapter(requireContext(), viewModel.getSectionTitle(), viewModel.getSectionQuestions(), this)
         binding.recyclerView.adapter = sectionQuestionsAdapter
+        binding.recyclerView.setItemViewCacheSize(viewModel.getNumberOfQuestionsInSection())
         binding.recyclerView.setHasFixedSize(true)
     }
 

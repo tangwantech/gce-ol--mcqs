@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.example.gceolmcqs.ActivationExpiryDatesGenerator
 import com.example.gceolmcqs.MCQConstants
 import com.example.gceolmcqs.MomoPayService
+import com.example.gceolmcqs.MomoPayServiceManager
 
 import com.example.gceolmcqs.SubjectPackageActivator
 import com.example.gceolmcqs.datamodels.SubjectPackageData
@@ -139,16 +140,29 @@ class SubscriptionActivityViewModel: ViewModel() {
         activateSubjectPackage()
         
     }
-//    private fun updateActivatedPackageIndexChangedAt(position: Int){
-//        _activatedPackageIndexChangedAt.postValue(position)
-//
-//    }
-
 
 
     fun initiatePayment(tokenTransactionIdBundle: Bundle?=null){
 //        setSubscriptionData(subscriptionFormData)
         println(tokenTransactionIdBundle)
+
+//        MomoPayServiceManager().requestToPay(subscriptionData.value!!, object: MomoPayServiceManager.OnPaymentStatusListener{
+//            override fun onPaymentSuccessful() {
+//                println("Transaction successful.....")
+//                _transactionStatus.postValue(MCQConstants.SUCCESSFUL)
+//            }
+//
+//            override fun onPaymentFailed() {
+//                println("Transaction successful.....")
+//                _transactionStatus.postValue(MCQConstants.FAILED)
+//            }
+//
+//            override fun onPaymentPending() {
+//                println("Transaction successful.....")
+//                _transactionStatus.postValue(MCQConstants.PENDING)
+//            }
+//
+//        })
 
         momoPay.initiatePayment(subscriptionData.value!!, object: MomoPayService.TransactionStatusListener{
             override fun onTransactionTokenAvailable(token: String?) {
